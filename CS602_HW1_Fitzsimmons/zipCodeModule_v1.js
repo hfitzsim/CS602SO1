@@ -34,6 +34,6 @@ module.exports.getPopulationByState = (state) => {
         if (statePop === 0) {
             return undefined;
         } else {
-            return statePop;
+            return `{state: '${state}', pop: ${statePop}}`;
         }
     };
