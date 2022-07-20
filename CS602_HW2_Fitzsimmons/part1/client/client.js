@@ -34,9 +34,9 @@ client.on('end', () => {
 
 // HW Code - Write code below for 'data' event listener
 
-
-
-
+client.on('data', (data) => {
+	console.log("\n ...Received: \n", colors.blue(data.toString()));
+})
 
 
 
