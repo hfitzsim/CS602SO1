@@ -1,10 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars');
+var path = require('path'); // needed to resolve "Error: failed to look up view ... in views directory ..."
 
 var app = express();
 
 // setup handlebars view engine
+app.set('views', path.join(__dirname, 'views')); // needed to resolve "Error: failed to look up view ... in views directory ... "
 app.engine('handlebars', 
     handlebars({defaultLayout: 'main_logo'}));
 app.set('view engine', 'handlebars');

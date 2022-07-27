@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const { ResumeToken } = require('mongodb');
 const credentials = require("./credentials.js");
 
 const dbUrl = 'mongodb+srv://' + credentials.username +
@@ -32,9 +33,17 @@ module.exports.lookupByCityState = async (city, state) => {
 	let client = await getConnection();
 	let collection = client.db(credentials.database).collection('zipcodes');
 	
-	// Fill in the rest
+	// re done from HW2 part 2 zipCodeModule_v2.js
 
+	let result = { "city": city, "state": state };
 
+	let zipPop = await collection.find({'city': city, 'state': state}).toArray();
+	
+	result.data = [];
+	result.data = zipPop.map(data => 
+		obj = obj = { "zip": data._id, "pop": data.pop }
+	);
+	return result;
 };
 
 module.exports.getPopulationByState = 
@@ -42,8 +51,18 @@ module.exports.getPopulationByState =
 
 		let client = await getConnection();
 		let collection = client.db(credentials.database).collection('zipcodes');
-	
-		// Fill in the rest
 		
-	};
+		// re done code from HW2 part 2 zipCodeModule_v2.js
 
+		let statePop = await collection.aggregate ( [
+			{
+				$match: {'state': state}
+			},
+			{
+				$group: {_id: null, 'population': {$sum: '$pop'}}
+			}
+		]).toArray();
+
+		let result = { 'state': state, 'population': statePop[0].population };
+		return result;
+	};

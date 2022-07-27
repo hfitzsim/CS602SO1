@@ -4,6 +4,8 @@ const Employee = employeeDB.getModel();
 module.exports = async (req , res , next) => {
     
     // Fill in the code
+
+    res.render('deleteEmployeeView');
         
   };
 

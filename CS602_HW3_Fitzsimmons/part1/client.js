@@ -21,6 +21,14 @@ const colors = require('colors');
 	console.log("\nGet Population by State (MA)".red);
 	let result4 = await cities.getPopulationByState('MA');
 	console.log(result4);
+
+	console.log("\nGet Population by State (TX)".red);
+	let result5 = await cities.getPopulationByState('TX');
+	console.log(result5);
+
+	console.log("\nLookup by city (BOSTON, TX)".red);
+	let result6 = await cities.lookupByCityState('BOSTON', 'TX');
+	console.log(result6);
  
 	process.exit();
 

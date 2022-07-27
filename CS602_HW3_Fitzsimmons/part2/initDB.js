@@ -30,8 +30,6 @@ const Employee = EmployeeDB.getModel();
 	console.log(currentEmployees);
 
 	process.exit();
-
-
 })();
 
 

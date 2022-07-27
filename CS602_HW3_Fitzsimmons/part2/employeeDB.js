@@ -15,11 +15,11 @@ let Schema = mongoose.Schema;
 // Step 2. For collection, replace lastName below with your lastName 
 
 let employeeSchema = new Schema({
-	
-	
+	firstName: 'string',
+	lastName: 'string'
 
 }, {
-	collection: 'employees_lastName'
+	collection: 'employees_Fitzsimmons'
 });
 
 module.exports = {	
